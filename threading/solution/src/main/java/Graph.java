@@ -20,6 +20,8 @@ public class Graph {
 
     Set<Integer> independentSet;
 
+    Random random=new Random();
+
     public Graph(int numberOfVertices)
     {
         executorService= Executors.newFixedThreadPool(8);
@@ -32,7 +34,7 @@ public class Graph {
         for(int i=0;i<numberOfVertices;i++)
         {
             graph.put(i,new HashSet<>());
-            verticesInfo.put(i,new Node(-1, getRandomNumberInRange(0,100)));
+            verticesInfo.put(i,new Node(-1, random.nextInt(101)));
         }
 
         colors=new TreeSet<>();
@@ -42,16 +44,6 @@ public class Graph {
         {
             colors.add(i);
         }
-    }
-
-    private static int getRandomNumberInRange(int min, int max) {
-
-        if (min >= max) {
-            throw new IllegalArgumentException("max must be greater than min");
-        }
-
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
     }
 
     public Integer getColor(int vertex)
